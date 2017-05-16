@@ -9,7 +9,7 @@ set :public_folder, "static"
 set :views, "views"
 
 get '/' do #was /hello/
-    erb :hello_form
+    erb :main_form #hello_form
 end
 
 post '/' do #was /hello/
@@ -41,18 +41,17 @@ post '/' do #was /hello/
 
     # all_items["products"].compact.map{|x| x["sizes"].compact.first["canonicalSize"]["name"]}.uniq{|x| x}.sort_by{|x| x}
 
-
     data = {
         type: selection["metadata"]["category"]["id"],
         short_name: selection["metadata"]["category"]["fullName"],
         size: sizes,
         classic_colors: color,
-        additional_colors: colors,
+        additional_colors: colors.join(', '),
         price_low: prices.first,
         price_high: prices.last,
         pick_up_in_store: 0,
         online_only: 0,
-        top_brands: brands,
+        top_brands: brands.join(', '),
         four_plus_rating: 0,
         occasion_shoes_skirts: '',
         pattern_jackets: '',
